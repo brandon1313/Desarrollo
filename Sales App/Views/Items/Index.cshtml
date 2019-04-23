@@ -1,0 +1,129 @@
+﻿@model PagedList.IPagedList<Sales_App.Models.Items>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Productos";
+}
+
+<div class="contents">
+    <div class="content__container">
+        <p class="content__container__text">
+            <i class="fa fa-smile"></i>
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">Productos</li>
+            <li class="content__container__list__item">Actualizar</li>
+            <li class="content__container__list__item">Agregar</li>
+            <li class="content__container__list__item">Modificar</li>
+
+        </ul>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Listado de Productos</h6>
+            </div>
+           
+            <div class="card-body" style="width:90%; font-size:12px;">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered" >
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Descripcion
+                                </th>
+                                <th>
+                                    Precio
+                                </th>
+                                <th>
+                                    Descuento %
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameItem)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        Q.@Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Discount)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit","Items",new { id = item.Id })" class="btn btn-success btn-icon-split" id="vinculo-vinc" style="font-size:12px;">
+                                            <span class="icon text-white-50 ">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            <span class="text" >Editar</span>
+                                        </a>
+                                        <a href="@Url.Action("Details","Items",new { id = item.Id })" class="btn btn-info  btn-icon-split" style="font-size:12px;">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-clipboard-list" ></i>
+                                            </span>
+                                            <span class="text" >Detalles</span>
+                                        </a>
+                                        <a href="@Url.Action("Delete","Items",new { id = item.Id })" class="btn btn-danger btn-icon-split" style="font-size:12px;">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text" >Eliminar</span>
+                                        </a>
+
+
+
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+
+                    </table>
+                    <br />
+                    <a href="@Url.Action("Create","Items")" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Añadir un Producto</span>
+                    </a>
+
+                    <div class="pagination" style="margin-left: 80%">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+
+
+                </div>
+                </div>
+        </div>
+    </div>
+       
+
+        <p>
+            <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="~/Content/Encabezados.css">
+            <!--<button class="btn" onclick="@Url.Action("Nuevo", "Create")">Nuevo <i class="fa fa-plus"></i> </button>-->
+            
+
+        </p>
+
+    </div>
+    }

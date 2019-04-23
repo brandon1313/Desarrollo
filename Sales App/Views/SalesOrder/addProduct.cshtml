@@ -1,0 +1,237 @@
+﻿@model Sales_App.Models.ItemOrder
+
+@{
+    ViewBag.Title = "addProduct";
+    var ListaProductos = ViewBag.Lista;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+}
+<style>
+
+*
+{
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+}
+a
+{
+    text-decoration: none;
+}
+.product-card {
+    width: 250px;
+    position: relative;
+    box-shadow: 0 2px 7px #dfdfdf;
+    margin: 50px auto;
+    background: #fafafa;
+}
+
+.badge {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: red;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+.product-tumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    padding: 50px;
+    background: #f0f0f0;
+}
+
+.product-tumb img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-details {
+    padding: 20px;
+}
+
+.product-catagory {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-bottom: 18px;
+}
+
+.product-details h5  {
+    font-weight: 100;
+    display: block;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    color: #363636;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.product-details h5:hover {
+    color: #fbb72c;
+}
+
+.product-details p {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 18px;
+    color: #999;
+}
+
+.product-bottom-details {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.product-bottom-details div {
+    float: left;
+    width: 50%;
+}
+
+.product-price {
+    font-size: 18px;
+    color: #fbb72c;
+    font-weight: 600;
+}
+
+.product-price small {
+    font-size: 80%;
+    font-weight: 400;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.product-links {
+    text-align: right;
+}
+
+.product-links a {
+    display: inline-block;
+    margin-left: 5px;
+    color: #e1e1e1;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.product-links a:hover {
+    color: #fbb72c;
+}
+</style>
+<div class="container-fluid">
+    <h2>Añade productos al pedido</h2>
+    <div class="row">
+        @foreach (var p in ListaProductos)
+        {
+            <div class="product-card">
+                <div class="badge">@p.Id</div>
+                <div class="product-tumb">
+                    <img src="~/Imagenes/@p.ItemImage" alt="">
+                </div>
+                <div class="product-details">
+                    <span class="product-catagory">Productos</span>
+                    <h5> @p.NameItem</h5>
+                    <p>@p.Description</p>
+                    <div class="product-bottom-details">
+                        
+                        <div class="product-price">Precio: Q.@p.Price </div>
+
+
+                        <div class="product-links">
+                            <label style="margin-left:10px;">Cantidad:<input type="number" style="width:50%;margin-left:10px;" /></label>
+                            <a href=""><i class="fa fa-heart"></i></a>
+                            <a href="#" class="agregar"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @section Scripts{
+            <script>
+                /**
+                 * Funcion para filtrar los elementos div con los productos.
+                 * classRecibida
+                 */
+                function keyupFunction(classRecibida) {
+                    nodosAfiltrar = document.querySelectorAll('.' + classRecibida);
+                   // alert ('Tenemos '+nodosAfiltrar.length)
+                    var palabra = document.getElementById("busqueda").value;
+
+                    for (var i = 0; i < nodosAfiltrar.length; i++) {
+
+
+                        //alert('Tenemos ahora' + nodosAfiltrar[i].childNodes[5].childNodes[3].innerHTML);
+                        if (nodosAfiltrar[i].childNodes[5].childNodes[3].innerHTML.indexOf(palabra) != -1) {
+                            nodosAfiltrar[i].style = 'display:block';
+                        }
+                        else { nodosAfiltrar[i].style = 'display:none'; }
+                        }
+                }
+
+                $(function () {
+                    $(".agregar").on("click", function (event) {
+                        event.preventDefault();
+
+                        var ProductId = $(this).parent().parent().parent().parent().find("div:eq(0)").text();
+                        //alert(ProductId);
+                        
+                        var quantity = $(this).parent().parent().find("input").val();
+                        //alert(quantity);
+
+                        $.ajax(
+                            {
+                                url: "@Url.Action("Carrito","SalesOrder")",
+                                data: { id: ProductId, cantidad: quantity },
+                                type: "post",
+                                success: function (response) {
+                                    window.location.href = "@Url.Action("Carrito", "SalesOrder")";
+                                },
+                                error: function (err, error) {
+                                    alert(error);
+                                }
+                            }
+                        );
+                    });
+                });
+
+
+
+
+
+                @Scripts.Render("~/bundles/jqueryval")
+            </script>
+        }
+    </div>
+
+    <div>
+    </div>
+
+</div>
+@Html.ActionLink("Back to List", "Index")
+
+
+

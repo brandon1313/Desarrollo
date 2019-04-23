@@ -1,0 +1,191 @@
+﻿@model Sales_App.Models.Items
+
+@{
+    ViewBag.Title = "Editar Item";
+}
+
+<div class="contents">
+    <div class="content__container">
+        <p class="content__container__text">
+            <i class="fa fa-smile"></i>
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">Editar Item</li>
+            <li class="content__container__list__item">Editar</li>
+            <li class="content__container__list__item">Editar Item</li>
+            <li class="content__container__list__item">Editar</li>
+
+        </ul>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles</h6>
+            </div>
+            <div class="form-horizontal">
+
+                <br>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameItem, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NameItem, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameItem, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-left:10px;">
+                    <a class="btn btn-success  btn-icon-split" href="#">
+
+                        <span class="icon text-white-50">
+                            <i class="fas fa-save"></i>
+                        </span>
+
+                        <input type="submit" value="Guardar" class="btn btn-success">
+
+                    </a>
+                </div>
+            </div>
+            </div>
+           </div>
+
+            }
+    <style>
+    
+
+
+
+.button-wrapper {
+  position: relative;
+  width: 150px;
+  text-align: center;
+  
+}
+
+.button-wrapper span.label {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  width: 100%;
+  background: #00bfff;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px 0;
+  text-transform:uppercase;
+  font-size:12px;
+}
+
+#upload {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+    </style>
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Imagen</h6>
+            </div>
+            <br />
+            @if (File.Exists(Server.MapPath("~/Images/"
+             + Html.DisplayFor(modelItem => Model.ItemImage))))
+            {
+                <img alt="" src="~/Images/Cakes/@Html.DisplayFor(modelItem   => Model.ItemImage)" />
+                <form action="/Cakes/DeletePhoto" method="post" name="deletePhoto">
+                    @Html.AntiForgeryToken()
+
+                    If the image above is not the correct image,
+                    hit delete and Re-Upload:
+
+                    <input type="text" name="photoFileName" value="@Html.DisplayFor(modelItem => Model.ItemImage)" />
+
+                    <input class="tiny button" type="submit" value="Delete" />
+                </form>
+            }
+            else
+            {
+
+                <form action="/Items/UploadPhoto" enctype="multipart/form-data" method="post" style="margin-left: 2%; margin-bottom:2%;">
+
+
+                    <div class="button-wrapper" style="display:inline-block;">
+                        <span class="label">
+                            Seleccionar una Imagen
+                        </span>
+
+                        <input type="file" name="photo" id="upload" class="upload-box" placeholder="Upload File">
+
+                    </div>
+                    <a class="btn btn-success  btn-icon-split" href="#">
+
+                        <span class="icon text-white-50">
+                            <i class="fas fa-upload"></i>
+                        </span>
+
+                        <input type="submit" value="Upload" class="btn btn-success">
+
+                    </a>
+
+
+
+
+                    <br />
+                    <br />
+                    <input type="hidden" name="cakesImage" value="@Html.DisplayFor(modelItem   => Model.ItemImage)" />
+                    <img src="~/Imagenes/@Model.ItemImage" style="width: 300px;"/>
+                </form>
+
+
+            }
+        </div>
+        <a href="@Url.Action("Index","Items",new {  })" class="btn btn-info btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-backward"></i>
+            </span>
+            <span class="text">Regresar</span>
+
+        </a>
+    </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

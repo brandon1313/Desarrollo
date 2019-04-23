@@ -1,0 +1,115 @@
+﻿@model Sales_App.Models.DeliveryView
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <div class="container-fluid">
+        <h4>Pedidos Maestro</h4>
+        <hr />
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalle del pedido </h6>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.OrderMasterID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.OrderMasterID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.Costumers.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.Costumers.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.DateTime)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.DateTime)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.Costumers.Nit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.Costumers.Nit)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.Costumers.Department.DepartmentName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.Costumers.Department.DepartmentName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderMaster.Costumers.Townships.TownshipName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderMaster.Costumers.Townships.TownshipName)
+                    </dd>
+
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered w-auto">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Titles.NameItem)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Titles.Price)
+                                </th>
+                                <th>
+                                    Cantidad Solicitada
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Titles.deliveryQuantity)
+                                </th>
+
+                            </tr>
+
+                            @for (int i = 0; i < Model.orderDetails.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.orderDetails[i].NameItem)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.orderDetails[i].Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.orderDetails[i].quantity)
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+
+                                    @Html.HiddenFor(modelItem => Model.orderDetails[i].detailId, new { htmlAttributes = new { } })
+
+
+                                </tr>
+
+
+                            }
+                        </table>
+                        </div>
+
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+        

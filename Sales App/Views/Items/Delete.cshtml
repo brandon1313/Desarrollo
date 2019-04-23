@@ -1,0 +1,97 @@
+﻿@model Sales_App.Models.Items
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<div class="contents">
+    <div class="content__container">
+        <p class="content__container__text">
+            <i class="fa fa-smile"></i>
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">Eliminar </li>
+            <li class="content__container__list__item">Precaucion!</li>
+            <li class="content__container__list__item">Estas seguro?</li>
+            <li class="content__container__list__item">De eliminar el item?</li>
+
+        </ul>
+    </div>
+</div>
+<div class="alert alert-warning">
+    <i class="fa fa-warning" style="font-size:30px;"></i> &nbsp; ¿Estás seguro que quieres eliminar el ítem?
+</div>
+<div class="container-fluid">
+    <div class="card shadow mb-auto">
+        <div class="card-header py-3" style="margin-bottom: 10px;">
+            <h6 class="m-0 font-weight-bold text-primary">Eliminar Elemento</h6>
+        </div>
+
+        <div>
+
+            
+            <dl class="dl-horizontal" style="margin-left:20px; margin-bottom:20px;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NameItem)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NameItem)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Discount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Discount)
+                </dd>
+
+            </dl>
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="margin-left:15px; margin-bottom:15px;">
+                
+                <a class="btn btn-danger  btn-icon-split" href="#">
+
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                    </span>
+
+                    <input type="submit" value="Eliminar" class="btn btn-danger">
+
+                </a>
+                <a href="@Url.Action("Index","Items",new {  })" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-backward"></i>
+                    </span>
+                    <span class="text">Regresar</span>
+
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</div>

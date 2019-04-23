@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sales_App.Models.OrderMaster>
+
+@{
+    ViewBag.Title = "ToApproved";
+}
+
+<h2>ToApproved</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sellers.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.delivered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sellers.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delivered)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderMasterID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderMasterID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderMasterID })
+        </td>
+    </tr>
+}
+
+</table>

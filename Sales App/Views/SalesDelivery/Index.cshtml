@@ -1,0 +1,15 @@
+﻿@model Sales_App.Models.DeliveryView
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Despachar Pedido</h2>
+<div class="form-group">
+    @Html.LabelFor(model => model.Titles.nameItem, "Productos del Pedido", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("ItemOrder", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Titles.nameItem, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+

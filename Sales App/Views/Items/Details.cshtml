@@ -1,0 +1,84 @@
+﻿@model Sales_App.Models.Items
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="contents">
+    <div class="content__container">
+        <p class="content__container__text">
+            <i class="fa fa-smile"></i>
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">Detalles del Item</li>
+            <li class="content__container__list__item">Detalles</li>
+            <li class="content__container__list__item">Detalles del Item</li>
+            <li class="content__container__list__item">Detalles</li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Detalles</h6>
+        </div>
+
+        <br />
+        <dl class="dl-horizontal" style="margin-left:20px;">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NameItem)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NameItem)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Discount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Discount)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        <a href="@Url.Action("Edit","Items",new { id = Model.Id })" class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-edit"></i>
+            </span>
+            <span class="text">Editar</span>
+
+        </a>
+        <a href="@Url.Action("Index","Items",new {  })" class="btn btn-info btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-backward"></i>
+            </span>
+            <span class="text">Regresar</span>
+
+        </a>
+
+        
+    </p>
+    </div>

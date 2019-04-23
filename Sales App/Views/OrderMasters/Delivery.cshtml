@@ -1,0 +1,124 @@
+﻿@model Sales_App.Models.DeliveryView
+@{
+    /**/
+
+    ViewBag.Title = "Despacho";
+}
+
+
+
+@using (Html.BeginForm())
+{
+<div class="container-fluid">
+    <h2>Despachar Pedido</h2>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Detalles del pedido</h6>
+        </div>
+        <div class="form-group">
+
+            <br />
+            @Html.LabelFor(model => model.orderMaster.OrderMasterID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.HiddenFor(model => model.orderMaster.OrderMasterID, new { htmlAttributes = new { } })
+                @Html.EditorFor(model => model.orderMaster.OrderMasterID, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                @Html.ValidationMessageFor(model => model.orderMaster.OrderMasterID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orderMaster.Costumers.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.orderMaster.Costumers.Name, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                @Html.ValidationMessageFor(model => model.orderMaster.Costumers.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orderMaster.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.orderMaster.DateTime.Date, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                @Html.ValidationMessageFor(model => model.orderMaster.DateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive text-nowrap">
+                <table class="table table-bordered w-auto">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titles.NameItem)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titles.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titles.quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titles.deliveryQuantity)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @for (int i = 0; i < Model.orderDetails.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].NameItem)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].quantity)
+                            </td>
+                            <td>
+                                @Html.EditorFor(modelItem => Model.orderDetails[i].deliveryQuantity,new { @class= "form-control bg-light border-0 small" })
+                            </td>
+
+                            @Html.HiddenFor(modelItem => Model.orderDetails[i].detailId, new { htmlAttributes = new { } })
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.orderDetails[i].Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = Model.orderDetails[i].Id })
+                            </td>
+                        </tr>
+
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+
+
+

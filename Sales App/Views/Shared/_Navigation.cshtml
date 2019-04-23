@@ -1,0 +1,308 @@
+﻿
+@using Microsoft.AspNet.Identity
+@using Sales_App.Models
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Ventas App <sup></sup></div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="@Url.Action("Index", "./Home")" />
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Catalogos
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Productos</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!--<h6 class="collapse-header">Custom Components:</h6>-->
+                    <a class="collapse-item" href="@Url.Action("Index", "./Items")">Productos</a>
+                    <a class="collapse-item" href="#">Stock de Productos</a>
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <!--  <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Utilities</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+        </li>-->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Addons
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fa fa-product-hunt"></i>
+                <span>Pedidos</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Acciones:</h6>
+                    <a class="collapse-item" href="@Url.Action("NewOrder", "./SalesOrder")">Nuevo Pedido</a>
+                    <a class="collapse-item" href="@Url.Action("Index", "./OrderMasters")">Despachar Pedido</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="collapse-item" href="@Url.Action("ToApproved", "./OrderMasters")">Aprobar Pedido</a>
+                    }
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagess" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fa fa-cogs"></i>
+                <span>Mantenimientos</span>
+            </a>
+            <div id="collapsePagess" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Acciones:</h6>
+                    <a class="collapse-item" href="@Url.Action("Index", "./Departments")">Departamentos</a>
+                    <a class="collapse-item" href="@Url.Action("Index", "./Townships")">Municipios</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="collapse-item" href="@Url.Action("Register", "./Account")">Usuarios</a>
+                    }
+
+                    <!--           <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>-->
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Charts
+        <li class="nav-item">
+
+            <a class="nav-link" href="@Url.Action("NewOrder", "./SalesOrder")">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Nuevo Pedido</span>
+            </a>
+        </li>-->
+        <!-- Nav Item - Tables -->
+        <!--
+        <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span>
+            </a>
+        </li>-->
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+            <!-- Topbar Search -->
+            <form class=" d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" id="busqueda" onkeyup="keyupFunction('product-card')" form-control bg-light border-0 small" placeholder="Buscar Productos.." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <!--<li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <!-- Nav Item - Alerts -->
+                <!-- <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Alerts -->
+                <!-- <span class="badge badge-danger badge-counter">3+</span>
+                </a>
+                <!-- Dropdown - Alerts -->
+                <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header">
+                        Alerts Center
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-file-alt text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">December 12, 2019</div>
+                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-success">
+                                <i class="fas fa-donate text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">December 7, 2019</div>
+                            $290.29 has been deposited into your account!
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-warning">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">December 2, 2019</div>
+                            Spending Alert: We've noticed unusually high spending for your account.
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                </div>
+                </li>
+                <!-- Nav Item - Messages -->
+                <!--<li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <!-- Counter - Messages -->
+                <!--<span class="badge badge-danger badge-counter">7</span>
+                </a>-->
+                <!-- Dropdown - Messages -->
+                <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header">
+                        Message Center
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div class="font-weight-bold">
+                            <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                            <div class="small text-gray-500">Emily Fowler · 58m</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                            <div class="small text-gray-500">Jae Chun · 1d</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                            <div class="status-indicator bg-warning"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                </div>
+                </li>
+                <div class="topbar-divider d-none d-sm-block"></div>-->
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                    @{
+                        var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                        var currentUser = manager.FindById(User.Identity.GetUserId());
+                    }
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@currentUser.Name</span>
+                        <img class="img-profile rounded-circle" src="data:image/png;base64,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">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Settings
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Activity Log
+                        </a>
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="@Url.Action("ToApproved", "./OrderMasters")" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+

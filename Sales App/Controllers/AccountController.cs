@@ -12,6 +12,7 @@ using Sales_App.Models;
 
 namespace Sales_App.Controllers
 {
+    /*Account*/
     [Authorize]
     public class AccountController : Controller
     {

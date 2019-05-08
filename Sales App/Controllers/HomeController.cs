@@ -18,27 +18,52 @@ namespace Sales_App.Controllers
 
             ViewBag.ForDeliver = db.OrderMaster.Count(e => e.Delivered != true);
             ViewBag.ForApproved = db.OrderMaster.Count(e => e.Approved != true);
-            ViewBag.Labels = "Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sep,Oct,Nov,Dic";
+            ViewBag.Labels = "Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre";
 
-            var a = "";
+            var cantidadMes = "";
 
             DateTime fechaActual = DateTime.Today;
             int mes = fechaActual.Month;
-            var data = db.OrderMaster.GroupBy(o => o.DateTime.Month).Select(c => c.Count()).ToList();
-            for (int i = 0; i < data.Count; i++ )
+            int año = fechaActual.Year;
+            var data = db.OrderMaster
+                  .GroupBy(p => p.DateTime.Month)
+                  .Select(g => new { month = g.Key, count = g.Count() });
+            int counter = 1;
+            foreach (var item in data)
             {
-                if(i == 0)
+                if(item.month != counter)
                 {
-                 
-                    a = "" + data[i];
+                    if(counter < item.month)
+                    {
+                        while(counter < item.month)
+                        {
+                            cantidadMes = cantidadMes + 0 + ",";
+                            counter++;
+                        }
+                    }
+                    else
+                    {
+                        cantidadMes = cantidadMes + item.count + ",";
+                    }
                 }
-                else { 
-                Console.WriteLine(data[i]);
-                a = a + "," + data[i];
+
+                if (counter >= item.month)
+                {
+                    cantidadMes = cantidadMes + item.count + ",";
+                    counter++;
                 }
 
             }
-            ViewBag.DataValues = a;
+    
+            ViewBag.DataValues = cantidadMes;
+
+
+                int Total = db.OrderMaster.Count();
+                int Entregado = db.OrderMaster.Count(e => e.Delivered == true);
+                int Resultado = (Entregado * 100) / Total;
+             ViewBag.PedidosDespachados = Resultado;
+
+            ViewBag.PedidosTotal = Total;
 
 
             return View();

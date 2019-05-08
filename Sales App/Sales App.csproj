@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -184,11 +187,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeasureUnitsController.cs" />
     <Compile Include="Controllers\ModeloController.cs" />
+    <Compile Include="Controllers\NewEntriesController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\OrderMastersController.cs" />
     <Compile Include="Controllers\SalesOrderController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
+    <Compile Include="Controllers\StocksController.cs" />
     <Compile Include="Controllers\TownshipsController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,6 +207,8 @@
     <Compile Include="Models\DeliveryView.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\ItemOrder.cs" />
+    <Compile Include="Models\MeasureUnit.cs" />
+    <Compile Include="Models\NewEntry.cs" />
     <Compile Include="Models\OrderMaster.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -209,8 +217,15 @@
     <Compile Include="Models\OrderView.cs" />
     <Compile Include="Models\Sellers.cs" />
     <Compile Include="Models\SellersOrder.cs" />
+    <Compile Include="Models\Stock.cs" />
     <Compile Include="Models\Townships.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Order.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Order.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2018,7 +2033,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
     <Folder Include="Imagenes\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2040,6 +2054,30 @@
     <Content Include="Views\Townships\Details.cshtml" />
     <Content Include="Views\Townships\Edit.cshtml" />
     <Content Include="Views\Townships\Index.cshtml" />
+    <Content Include="Views\MeasureUnits\Create.cshtml" />
+    <Content Include="Views\MeasureUnits\Delete.cshtml" />
+    <Content Include="Views\MeasureUnits\Details.cshtml" />
+    <Content Include="Views\MeasureUnits\Edit.cshtml" />
+    <Content Include="Views\MeasureUnits\Index.cshtml" />
+    <Content Include="Views\NewEntries\Create.cshtml" />
+    <Content Include="Views\NewEntries\Delete.cshtml" />
+    <Content Include="Views\NewEntries\Details.cshtml" />
+    <Content Include="Views\NewEntries\Edit.cshtml" />
+    <Content Include="Views\NewEntries\Index.cshtml" />
+    <Content Include="Views\Stocks\Create.cshtml" />
+    <Content Include="Views\Stocks\Delete.cshtml" />
+    <Content Include="Views\Stocks\Details.cshtml" />
+    <Content Include="Views\Stocks\Edit.cshtml" />
+    <Content Include="Views\Stocks\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\Order.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Order.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

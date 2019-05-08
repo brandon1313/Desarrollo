@@ -4,22 +4,6 @@
     ViewBag.Title = "Nuevo Producto";
 }
 
-<div class="contents">
-    <div class="content__container">
-        <p class="content__container__text">
-            <i class="fa fa-smile"></i>
-        </p>
-
-        <ul class="content__container__list">
-            <li class="content__container__list__item">Nuevo Item</li>
-            <li class="content__container__list__item">Agregar</li>
-            <li class="content__container__list__item">Nuevo Item</li>
-            <li class="content__container__list__item">Agregar</li>
-
-        </ul>
-    </div>
-</div>
-
 
 @using (Html.BeginForm())
 {
@@ -27,6 +11,9 @@
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
+        <div class="card-header py-3" style="margin-bottom: 10px;">
+            <h6 class="m-0 font-weight-bold text-primary">Agregar Elemento</h6>
+        </div>
         <br />
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -61,6 +48,13 @@
                 @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdMeasureUnit, "IdMeasureUnit", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("IdMeasureUnit", null, htmlAttributes: new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.IdMeasureUnit, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -71,7 +65,7 @@
             </div>
         </div>
     </div>
-    <a href="@Url.Action("Index","Items",new {  })" class="btn btn-info btn-icon-split">
+    <a href="@Url.Action("Index","Items",new {  })" class="btn btn-secondary btn-icon-split">
         <span class="icon text-white-50">
             <i class="fas fa-backward"></i>
         </span>

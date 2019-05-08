@@ -7,8 +7,7 @@
 
 <div>
     <div class="container-fluid">
-        <h4>Pedidos Maestro</h4>
-        <hr />
+    
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -63,21 +62,23 @@
 
                     <div class="table-responsive text-nowrap">
                         <table class="table table-bordered w-auto">
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Titles.NameItem)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Titles.Price)
-                                </th>
-                                <th>
-                                    Cantidad Solicitada
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Titles.deliveryQuantity)
-                                </th>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Titles.NameItem)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Titles.Price)
+                                    </th>
+                                    <th>
+                                        Cantidad Solicitada
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Titles.deliveryQuantity)
+                                    </th>
 
-                            </tr>
+                                </tr>
+                            </thead>
 
                             @for (int i = 0; i < Model.orderDetails.Count; i++)
                             {

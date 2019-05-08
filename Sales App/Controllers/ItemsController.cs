@@ -48,7 +48,10 @@ namespace Sales_App.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
+            ViewBag.IdMeasureUnit = new SelectList(db.MeasureUnits, "Id", "MeasureName");
             return View();
+            
+
         }
 
         // POST: Items/Create
@@ -56,7 +59,7 @@ namespace Sales_App.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,nameItem,description,price,discount,image")] Items items)
+        public ActionResult Create([Bind(Include = "Id,nameItem,description,price,discount,image,IdMeasureUnit")] Items items)
         {
             if (ModelState.IsValid)
             {

@@ -47,5 +47,11 @@ namespace Sales_App.Models
         public System.Data.Entity.DbSet<Sales_App.Models.Department> Departments { get; set; }
 
         public System.Data.Entity.DbSet<Sales_App.Models.Townships> Townships { get; set; }
+
+        public System.Data.Entity.DbSet<Sales_App.Models.MeasureUnit> MeasureUnits { get; set; }
+
+        public System.Data.Entity.DbSet<Sales_App.Models.NewEntry> NewEntries { get; set; }
+
+        public System.Data.Entity.DbSet<Sales_App.Models.Stock> Stocks { get; set; }
     }
 }

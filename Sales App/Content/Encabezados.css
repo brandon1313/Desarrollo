@@ -240,7 +240,7 @@
         background-color: #2B53C5;
         color:#fff;
     }
-tr:hover {
+tr > td:hover {
     background-color: #f5f5f5;
 }
 
@@ -404,3 +404,11 @@ a {
             color: #fbb72c;
         }
 
+thead:hover {
+    background-color: #3C537C;
+    color:white;
+}
+thead{
+    background-color: #3C537C;
+    color: white;
+}

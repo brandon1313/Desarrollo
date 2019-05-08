@@ -5,7 +5,7 @@
 }
 
 <div class="container-fluid">
-    <h2>Pedidos</h2>
+    
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Listado de Pedidos sin despachar</h6>
@@ -15,17 +15,19 @@
                 <!-- @Html.ActionLink("Create New", "Create")-->
             </p>
             <div class="table-responsive text-nowrap">
+               
                 <table class="table table-bordered w-auto">
-                    <tr>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DateTime)
-                        </th>
-                        <th></th>
-                    </tr>
-
+                    <thead>
+                        <tr>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateTime)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     @foreach (var item in Model)
                     {
                         <tr>

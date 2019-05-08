@@ -1,0 +1,58 @@
+﻿@model Sales_App.Models.Stock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Stock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Items.NameItem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Items.NameItem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewEntry.CorrelativeBill)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewEntry.CorrelativeBill)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderMaster.OrderMasterID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderMaster.OrderMasterID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.In)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.In)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Out)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Out)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

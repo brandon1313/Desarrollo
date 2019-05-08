@@ -3,26 +3,7 @@
     ViewBag.Title = "NewOrder";
 }
 
-<!-- Earnings (Monthly) Card Example -->
-<div class="contents">
-    <div class="content__container">
-        <p class="content__container__text">
-            <i class="fa fa-list"></i>
-        </p>
 
-        <ul class="content__container__list">
-            <li class="content__container__list__item">Nuevo Pedido</li>
-            <li class="content__container__list__item">Nuevo Pedido</li>
-            <li class="content__container__list__item">Nuevo Pedido</li>
-            <li class="content__container__list__item">Nuevo Pedido</li>
-
-        </ul>
-    </div>
-
-
-
-
-</div>
 
 @using (Html.BeginForm("NewOrder", "SalesOrder", FormMethod.Post))
 {
@@ -77,21 +58,23 @@
 
             <div class="table-responsive text-nowrap" style="margin-left: 15px; align-content:center; width:95%;">
                 <table class="table table-bordered">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Titles.NameItem)
-                        </th>
-                        <th>
-                            Cantidad
-                        </th>
-                        <th>
-                            Precio Unitario
-                        </th>
-                        <th>
-                            Sub total   
-                        </th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.NameItem)
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio Unitario
+                            </th>
+                            <th>
+                                Sub total
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
 
                     @for (int i = 0; i < Model.Items.Count; i++)
@@ -115,7 +98,7 @@
                                 <!-- @Html.ActionLink("Edit", "Edit", new { id = Model.Items[i].Id })-->
 
                                 
-                                <a href="@Url.Action("RemoveItem","SalesOrder",new { id = Model.Items[i].Id })" class="btn btn-light  btn-icon-split" >
+                                <a href="@Url.Action("RemoveItem","SalesOrder",new { id = Model.Items[i].Id })" class="btn btn-danger  btn-icon-split" style="font-size:12px;">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-trash"></i>
                                     </span>

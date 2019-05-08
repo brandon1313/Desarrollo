@@ -36,7 +36,8 @@ namespace Sales_App.Models
 
 
         public ICollection<OrderDetail> OrderDetail { get; set; }
-        
+        public ICollection<Stock> Stocks { get; set; }
+
 
     }
 }

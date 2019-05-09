@@ -58,11 +58,15 @@ namespace Sales_App.Controllers
             ViewBag.DataValues = cantidadMes;
 
 
-                int Total = db.OrderMaster.Count();
-                int Entregado = db.OrderMaster.Count(e => e.Delivered == true);
-                int Resultado = (Entregado * 100) / Total;
-             ViewBag.PedidosDespachados = Resultado;
+            int Total = db.OrderMaster.Count();
+            int Entregado = db.OrderMaster.Count(e => e.Delivered == true);
+            int Resultado = 0;
 
+            if (Total > 0)
+            {
+                Resultado = (Entregado * 100) / Total;
+            }
+            ViewBag.PedidosDespachados = Resultado;
             ViewBag.PedidosTotal = Total;
 
 

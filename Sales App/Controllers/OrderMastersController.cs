@@ -104,6 +104,56 @@ namespace Sales_App.Controllers
             return View(orderMaster.ToList());
         }
 
+        [HttpGet]
+        public ActionResult ApprovedView(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OrderMaster orderMaster = db.OrderMaster.Find(id);
+            if (orderMaster == null)
+            {
+                return HttpNotFound();
+            }
+            DeliveryView deliveryView = new DeliveryView();
+            deliveryView.orderMaster = orderMaster;
+            deliveryView.orderDetails = new List<ItemOrder>();
+            List<OrderDetail> details = db.Order_Detail.Where(e => e.OrderMasterID == id).ToList();
+            foreach (OrderDetail orderDetail in details)
+            {
+                var itemOrder = new ItemOrder
+                {
+                    detailId = orderDetail.Id,
+                    NameItem = orderDetail.Items.NameItem,
+                    Price = orderDetail.Items.Price,
+                    quantity = Convert.ToInt32(orderDetail.quantity),
+                    deliveryQuantity = orderDetail.deliveryQuantity,
+                    approvedQuantity = orderDetail.approvedQuantity
+
+
+                };
+                deliveryView.orderDetails.Add(itemOrder);
+            }
+
+
+
+
+
+            var list = db.Order_Detail.Where(e => e.OrderMasterID == id).Join(db.Items, e => e.ItemsId, d => d.Id, (detail, item) => new
+            {
+                Id = detail.Id,
+                name = item.NameItem
+            }).ToList();
+            ViewBag.ItemOrder = new SelectList(list, "detailId", "name");
+
+
+            Session["DeliverySession"] = deliveryView;
+            return View(deliveryView);
+
+            
+        }
+
             public ActionResult GetQuantity(int detailId)
         {
             var quantity = db.Order_Detail.Where(d => d.Id == detailId).Select(d => d.quantity).SingleOrDefault();

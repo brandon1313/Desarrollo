@@ -77,9 +77,11 @@
                     <a class="collapse-item" href="@Url.Action("Index", "./OrderMasters")">Despachar Pedido</a>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a class="collapse-item" href="@Url.Action("ToApproved", "./OrderMasters")">Aprobar Pedido</a>
+
+
                     }
-        <li class="nav-item">
+                    <a class="collapse-item" href="@Url.Action("ToApproved", "./OrderMasters")">Aprobar Pedido</a>
+<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagess" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fa fa-cogs"></i>
                 <span>Mantenimientos</span>

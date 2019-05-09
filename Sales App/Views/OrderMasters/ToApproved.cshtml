@@ -41,9 +41,7 @@
             @Html.DisplayFor(modelItem => item.Delivered)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderMasterID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderMasterID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderMasterID })
+            @Html.ActionLink("Aprobar", "ApprovedView", new { id=item.OrderMasterID })
         </td>
     </tr>
 }

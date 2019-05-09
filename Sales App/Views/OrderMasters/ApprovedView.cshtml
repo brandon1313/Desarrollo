@@ -1,0 +1,153 @@
+﻿@model Sales_App.Models.DeliveryView
+@{
+    /**/
+
+    ViewBag.Title = "Aprobacion";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="container-fluid">
+        <h2>Aprobar Pedido</h2>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles del pedido</h6>
+            </div>
+            <div class="form-group">
+
+                <br />
+                @Html.LabelFor(model => model.orderMaster.OrderMasterID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.HiddenFor(model => model.orderMaster.OrderMasterID, new { htmlAttributes = new { } })
+                    @Html.EditorFor(model => model.orderMaster.OrderMasterID, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                    @Html.ValidationMessageFor(model => model.orderMaster.OrderMasterID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderMaster.Costumers.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.orderMaster.Costumers.Name, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                    @Html.ValidationMessageFor(model => model.orderMaster.Costumers.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderMaster.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.orderMaster.DateTime.Date, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
+                    @Html.ValidationMessageFor(model => model.orderMaster.DateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered w-auto">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.NameItem)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.Price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.deliveryQuantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titles.approvedQuantity)
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        @for (int i = 0; i < Model.orderDetails.Count; i++)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].NameItem)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.orderDetails[i].deliveryQuantity)
+                            </td>
+                            <td>
+                                @Html.EditorFor(modelItem => Model.orderDetails[i].approvedQuantity, new { @class = "form-control bg-light border-0 small " })
+                            </td>
+
+                            @Html.HiddenFor(modelItem => Model.orderDetails[i].detailId, new { htmlAttributes = new { } })
+
+                            <td>
+                                <!-- <a href="@Url.Action("Edit","S",new { id = Model.orderDetails[i].Id })" class="btn btn-success btn-icon-split" id="vinculo-vinc" style="font-size:12px;">
+                <span class="icon text-white-50 ">
+                    <i class="fas fa-edit"></i>
+                </span>
+                <span class="text">Editar</span>
+            </a>
+            <a href="@Url.Action("Delete","Items",new { id = Model.orderDetails[i].Id })" class="btn btn-danger btn-icon-split" style="font-size:12px;">
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                </span>
+                <span class="text">Eliminar</span>
+            </a>
+        </td>-->
+                        </tr>
+
+
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-left:10px;">
+            <a class="btn btn-success  btn-icon-split" href="#">
+
+                <span class="icon text-white-50">
+                    <i class="fas fa-save"></i>
+                </span>
+
+                <input type="submit" value="Guardar" class="btn btn-success">
+
+            </a>
+            <a href="@Url.Action("Index","Items",new {  })" class="btn btn-info btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-backward"></i>
+                </span>
+                <span class="text">Regresar</span>
+
+            </a>
+        </div>
+
+    </div>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

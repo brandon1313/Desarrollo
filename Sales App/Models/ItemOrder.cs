@@ -13,5 +13,7 @@ namespace Sales_App.Models
         public double partial { get { return Price * quantity; } }
         [Display(Name = "Cantidad Despachada")]
         public int deliveryQuantity { get; set; }
+        [Display(Name = "Cantidad Aprobada")]
+        public int approvedQuantity { get; set; }
     }
 }
